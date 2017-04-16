@@ -22,7 +22,7 @@ namespace Dama.Tests
             var result = _sut.GetCellStatus(0, 1);
 
 
-            Assert.AreEqual(Cell.Free, result);
+            Assert.AreEqual(CellStatus.Free, result);
         }
 
         [Test]
@@ -32,17 +32,17 @@ namespace Dama.Tests
 
             var result = _sut.GetCellStatus(5, 0);
 
-            Assert.AreEqual(Cell.Black, result);
+            Assert.AreEqual(CellStatus.Black, result);
         }
 
         [Test]
         public void GetCellStatus_CellStatusIsFree_GetStatusReturnFree()
         {
-            _sut.SetCell(Cell.Free, 0, 0);
+            _sut.SetCell(CellStatus.Free, 0, 0);
 
             var result = _sut.GetCellStatus(0, 0);
 
-            Assert.AreEqual(Cell.Free, result);
+            Assert.AreEqual(CellStatus.Free, result);
         }
 
         [Test]
@@ -50,7 +50,7 @@ namespace Dama.Tests
         {
             var result = _sut.GetCellStatus(0, 1);
 
-            Assert.AreEqual(Cell.White, result);
+            Assert.AreEqual(CellStatus.White, result);
         }
 
         [Test]
@@ -121,40 +121,40 @@ b   b   b   b
 
             var result = _sut.GetCellStatus(5, 0);
 
-            Assert.AreEqual(Cell.Free, result);
+            Assert.AreEqual(CellStatus.Free, result);
         }
 
         [Test]
         public void SetCell_SetCellBlack_GetStatusReturnBlack()
         {
 
-            _sut.SetCell(Cell.Black, 0, 0);
+            _sut.SetCell(CellStatus.Black, 0, 0);
 
             var result = _sut.GetCellStatus(0, 0);
 
-            Assert.AreEqual(Cell.Black, result);
+            Assert.AreEqual(CellStatus.Black, result);
         }
 
         [Test]
         public void SetCell_SetCellFree_GetStatusReturnFree()
         {
 
-            _sut.SetCell(Cell.Free, 0, 0);
+            _sut.SetCell(CellStatus.Free, 0, 0);
 
             var result = _sut.GetCellStatus(0, 0);
 
-            Assert.AreEqual(Cell.Free, result);
+            Assert.AreEqual(CellStatus.Free, result);
         }
 
         [Test]
         public void SetCell_SetCellWhite_GetStatusReturnWhite()
         {
 
-            _sut.SetCell(Cell.White, 0, 0);
+            _sut.SetCell(CellStatus.White, 0, 0);
 
             var result = _sut.GetCellStatus(0, 0);
 
-            Assert.AreEqual(Cell.White, result);
+            Assert.AreEqual(CellStatus.White, result);
         }
     }
 }

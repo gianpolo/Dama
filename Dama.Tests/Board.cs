@@ -1,13 +1,13 @@
 namespace Dama.Tests
 {
-    public class Board
+    public class Board : IBoard
     {
         public static int BOARD_SIZE = 8;
-        private readonly Cell[,] _board;
+        private readonly CellStatus[,] _board;
 
         public Board()
         {
-            _board = new Cell[BOARD_SIZE, BOARD_SIZE];
+            _board = new CellStatus[BOARD_SIZE, BOARD_SIZE];
             InitBoard();
         }
 
@@ -22,22 +22,22 @@ namespace Dama.Tests
             }
         }
 
-        private Cell DefaultCell(int x, int y)
+        private CellStatus DefaultCell(int x, int y)
         {
             if ((x + y) % 2 == 0)
             {
-                return Cell.Unavailable;
+                return CellStatus.Unavailable;
             }
 
             if (x == 3 || x == 4)
             {
-                return Cell.Free;
+                return CellStatus.Free;
             }
             if (x > 3)
             {
-                return Cell.Black;
+                return CellStatus.Black;
             }
-            return Cell.White;
+            return CellStatus.White;
         }
 
         public void Clean()
@@ -46,20 +46,20 @@ namespace Dama.Tests
             {
                 for (int j = 0; j < BOARD_SIZE; j++)
                 {
-                    if (_board[i, j] != Cell.Unavailable)
-                        _board[i, j] = Cell.Free;
+                    if (_board[i, j] != CellStatus.Unavailable)
+                        _board[i, j] = CellStatus.Free;
                 }
             }
         }
 
-        public Cell GetCellStatus(int x, int y)
+        public CellStatus GetCellStatus(int x, int y)
         {
             return _board[x, y];
         }
 
-        public void SetCell(Cell cell, int x, int y)
+        public void SetCell(CellStatus cellStatus, int x, int y)
         {
-            _board[x, y] = cell;
+            _board[x, y] = cellStatus;
         }
 
         public string Print()
@@ -88,22 +88,22 @@ namespace Dama.Tests
             return boardString;
         }
 
-        private static string PrintCell(Cell cell)
+        private static string PrintCell(CellStatus cellStatus)
         {
             string s = "";
-            if (cell == Cell.Free)
+            if (cellStatus == CellStatus.Free)
             {
                 s = "-";
             }
-            if (cell == Cell.Unavailable)
+            if (cellStatus == CellStatus.Unavailable)
             {
                 s = " ";
             }
-            if (cell == Cell.Black)
+            if (cellStatus == CellStatus.Black)
             {
                 s = "b";
             }
-            if (cell == Cell.White)
+            if (cellStatus == CellStatus.White)
             {
                 s = "w";
             }
@@ -112,7 +112,7 @@ namespace Dama.Tests
 
         public void Remove(int x, int y)
         {
-            _board[x, y] = Cell.Free;
+            _board[x, y] = CellStatus.Free;
         }
     }
 }

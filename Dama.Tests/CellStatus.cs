@@ -1,6 +1,6 @@
 ﻿namespace Dama.Tests
 {
-    public enum Cell
+    public enum CellStatus
     {
         Unavailable = 0,
         Free,

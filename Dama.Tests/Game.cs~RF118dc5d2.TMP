@@ -1,0 +1,43 @@
+﻿using Moq;
+using NUnit.Framework;
+
+
+namespace Dama.Tests
+{
+    [TestFixture]
+    public class EngineTest
+    {
+        public void NextPlayer_FirstPlayerIsBlack_NextPlayerReturnBlack()
+        {
+            var engine = new Engine();
+
+            var result = engine.NextPlayer();
+
+            Assert.AreEqual(Player.Black,result);
+        }
+
+        public void Move_PlayerBlackMoveUpLeftAPawn_BoardRemoveFromOriginAndSetToDestination()
+        {
+            var engine = new Engine();
+            var board = new  Mock<Board>();
+
+            engine.Move(5, 2, 4, 1);
+            board.Verify( b => b.Remove(5,2));
+            board.Verify(b => b.SetCell(CellStatus.Black,4, 1));
+        }
+    }
+
+    public enum Player
+    {
+        Black,
+        White
+    }
+
+    public class Engine     
+    {
+        public Player NextPlayer()
+        {
+            return Player.Black;
+        }
+    }
+}
