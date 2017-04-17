@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Dama.Core.Enums;
+using NUnit.Framework;
 
 namespace Dama.Tests
 {
@@ -155,6 +156,24 @@ b   b   b   b
             var result = _sut.GetCellStatus(0, 0);
 
             Assert.AreEqual(CellStatus.White, result);
+        }
+
+        [Test]
+        public void PrintWithGuides_PrintAFormattedBoard()
+        {
+            var expected = @"  A B C D E F G H
+1   w   w   w   w
+2 w   w   w   w  
+3   w   w   w   w
+4 -   -   -   -  
+5   -   -   -   -
+6 b   b   b   b  
+7   b   b   b   b
+8 b   b   b   b  
+";
+
+            var result = _sut.PrintWithGuides();
+            Assert.AreEqual(expected,result);
         }
     }
 }

@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F0894D4A-695F-42A0-BCA3-888D81425C9E}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{C3F05EEC-464F-4123-8336-56DA5D13F3B1}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Dama.Core</RootNamespace>
-    <AssemblyName>Dama.Core</AssemblyName>
+    <RootNamespace>Dama.Console</RootNamespace>
+    <AssemblyName>Dama.Console</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -40,25 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Board.cs" />
-    <Compile Include="Enums\CellStatus.cs" />
-    <Compile Include="Enums\Direction.cs" />
-    <Compile Include="Engine.cs" />
-    <Compile Include="IBoard.cs" />
-    <Compile Include="MoveValidation\IMoveVlidator.cs" />
-    <Compile Include="MoveValidation\Rules\IRuleFactory.cs" />
-    <Compile Include="MoveValidation\Rules\IsDestinationEmptyRule.cs" />
-    <Compile Include="MoveValidation\Rules\IsPositionHolderRule.cs" />
-    <Compile Include="MoveValidation\Rules\IsValidDirectionRule.cs" />
-    <Compile Include="MoveValidation\MoveValidationResult.cs" />
-    <Compile Include="MoveValidation\MoveValidator.cs" />
-    <Compile Include="Enums\Player.cs" />
-    <Compile Include="Point.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MoveValidation\Rule.cs" />
-    <Compile Include="MoveValidation\ValidationArgs.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dama.Core\Dama.Core.csproj">
+      <Project>{f0894d4a-695f-42a0-bca3-888d81425c9e}</Project>
+      <Name>Dama.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

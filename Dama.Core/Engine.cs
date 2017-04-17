@@ -1,9 +1,9 @@
-using System;
 using System.Collections.Generic;
-using System.Net.NetworkInformation;
+using Dama.Core.Enums;
+using Dama.Core.MoveValidation;
+using Dama.Tests;
 
-
-namespace Dama.Tests
+namespace Dama.Core
 {
     public class Engine     
     {
@@ -25,7 +25,14 @@ namespace Dama.Tests
 
         public void Move(Point origin, Point destination)
         {
-            _validator.IsValid(_currentPlayer, origin, destination);
+            var validation = new MoveInfo
+            {
+                Origin = origin,
+                Destination = destination,
+                Player = _currentPlayer
+            };
+
+            _validator.IsValid(validation);
              var toRemove = GetPositionToRemove(origin,destination);
             _board.Remove(toRemove.X,toRemove.Y);
 
@@ -63,7 +70,13 @@ namespace Dama.Tests
 
             foreach (var dest in destinations)
             {
-                _validator.IsValid(_currentPlayer,tmp,dest);
+                var validation = new MoveInfo
+                {
+                    Origin = tmp,
+                    Destination = dest,
+                    Player = _currentPlayer
+                };
+                _validator.IsValid(validation);
                 tmp = dest;
             }
 
@@ -74,46 +87,13 @@ namespace Dama.Tests
                 tmp = destination;
             }
         }
-
-       
-
+         
         private void SetNextPlayer()
         {
             _currentPlayer = _currentPlayer == Player.Black ? Player.White : Player.Black;
         }
     }
 
-    public class PawnRemover
-    {
-        private readonly IBoard _board;
-
-        public PawnRemover(IBoard board)
-        {
-            _board = board;
-           
-        }
-
-        public void Remove(int i, int i1, int xo, int yo)
-        {
-            _board.Remove(4, 3);
-            _board.Remove(xo, yo);
-        }
-    }
-
-    public class MoveValidator
-    {
-        private readonly IBoard _board;
-
-        public MoveValidator(IBoard board)
-        {
-            _board = board; 
-        }
-
-        public void IsValid(Player currentPlayer, int xo, int yo, int xd, int yd)
-        {
-            _board.GetCellStatus(xo, yo);
-            _board.GetCellStatus(xd, yd);
-            _board.GetCellStatus(4, 3);
-        }
-    }
+     
+     
 }

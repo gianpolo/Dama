@@ -1,4 +1,4 @@
-﻿namespace Dama.Tests
+﻿namespace Dama.Core.Enums
 {
     public enum CellStatus
     {

@@ -54,6 +54,10 @@
   <ItemGroup>
     <Compile Include="BoardTests.cs" />
     <Compile Include="EngineTest.cs" />
+    <Compile Include="IsDestinationEmptyRuleTests.cs" />
+    <Compile Include="IsPositionHolderRuleTests.cs" />
+    <Compile Include="IsValidDirectionRuleTests.cs" />
+    <Compile Include="MoveValidatorTests.cs" />
     <Compile Include="PointTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

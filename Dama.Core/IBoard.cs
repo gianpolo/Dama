@@ -1,4 +1,6 @@
-﻿namespace Dama.Tests
+﻿using Dama.Core.Enums;
+
+namespace Dama.Tests
 {
     public interface IBoard
     {

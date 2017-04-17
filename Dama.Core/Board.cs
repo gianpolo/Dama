@@ -1,3 +1,6 @@
+using System.ComponentModel;
+using Dama.Core.Enums;
+
 namespace Dama.Tests
 {
     public class Board : IBoard
@@ -113,6 +116,42 @@ namespace Dama.Tests
         public void Remove(int x, int y)
         {
             _board[x, y] = CellStatus.Free;
+        }
+
+        public string PrintWithGuides()
+        {
+            string boardString = "  A B C D E F G H";
+            boardString += System.Environment.NewLine;
+            //boardString += "1 ";
+            var line = 1;
+            var item = 1;
+            foreach (var cell in _board)
+            {
+                if (item == 1)
+                {
+                    boardString += line.ToString() + " ";
+
+                }
+                var s = PrintCell(cell);
+
+                boardString += s;
+               
+                
+                if (item % 8 == 0)
+                {
+                    boardString += System.Environment.NewLine;
+                    line++;
+                    
+                    item = 1;
+                }
+                else
+                {
+                    boardString += " ";
+                    item++;
+                }
+
+            }
+            return boardString;
         }
     }
 }
