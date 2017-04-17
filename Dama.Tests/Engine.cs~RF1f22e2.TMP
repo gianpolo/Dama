@@ -18,8 +18,9 @@ namespace Dama.Tests
 
         public void Move(int xo, int yo, int xd, int yd)
         {
-            _board.Remove(5,2);
-            _board.SetCell(CellStatus.Black, 4,1);
+            _board.GetCellStatus(xo, yo);
+            _board.Remove(xo,yo);
+            _board.SetCell(CellStatus.Black, xd,xd);
             _currentPlayer = _currentPlayer == Player.Black ? Player.White : Player.Black;
       
         }

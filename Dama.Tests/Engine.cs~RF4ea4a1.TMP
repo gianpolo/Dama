@@ -1,0 +1,85 @@
+namespace Dama.Tests
+{
+    public class Engine     
+    {
+        private readonly IBoard _board;
+        private Player _currentPlayer;
+
+        public Engine(IBoard board)
+        {
+            _board = board;
+            _currentPlayer = Player.Black;
+        }
+
+        public Player NextPlayer()
+        {
+            return _currentPlayer;
+        }
+
+        public void Move(int xo, int yo, int xd, int yd)
+        {
+            var validator = new MoveValidator(_board);
+            validator.IsValid(_currentPlayer, xo, yo, xd, yd);
+            var remover = new PawnRemover(_board);
+            remover.Remove(4, 3, xo, yo);
+          
+            _board.SetCell(CellStatus.Black, xd,yd);
+
+
+            SetNextPlayer();
+      
+        }
+
+        private void SetNextPlayer()
+        {
+            _currentPlayer = _currentPlayer == Player.Black ? Player.White : Player.Black;
+        }
+    }
+
+    public class Point
+    {
+        public int X { get; private set; }
+        public int Y { get; set; }
+
+        public Point(int row,string col)
+        {
+            X = row -1;
+            col = col.ToUpper();
+            Y = GetColNumber(col);
+        }
+    }
+
+    public class PawnRemover
+    {
+        private readonly IBoard _board;
+
+        public PawnRemover(IBoard board)
+        {
+            _board = board;
+           
+        }
+
+        public void Remove(int i, int i1, int xo, int yo)
+        {
+            _board.Remove(4, 3);
+            _board.Remove(xo, yo);
+        }
+    }
+
+    public class MoveValidator
+    {
+        private readonly IBoard _board;
+
+        public MoveValidator(IBoard board)
+        {
+            _board = board; 
+        }
+
+        public void IsValid(Player currentPlayer, int xo, int yo, int xd, int yd)
+        {
+            _board.GetCellStatus(xo, yo);
+            _board.GetCellStatus(xd, yd);
+            _board.GetCellStatus(4, 3);
+        }
+    }
+}

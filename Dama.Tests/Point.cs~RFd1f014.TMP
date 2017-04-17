@@ -1,0 +1,73 @@
+namespace Dama.Tests
+{
+    public class Point
+    {
+        public int Row { get; private set; }
+        public string Col { get; private set; }
+
+        public int X { get; private set; }
+        public int Y { get; set; }
+
+        public Point(int row,string col)
+        {
+            Row = row;
+            Col = col;
+
+            X = row -1; 
+            Y = GetColNumber(col);
+        }
+
+        private int GetColNumber(string col)
+        {
+            // A = 97 , H = 72
+            var ascii =(int) (col.ToUpper()[0]);
+            return ascii - 65;
+        }
+
+      
+        public Point Above()
+        {
+            return new Point(this.Row -1,this.Col);         
+        }
+
+        public Point AboveLeft()
+        {
+             
+            return new Point(this.Row-1,Left(this.Col));
+        }
+
+        public Point AboveRight()
+        {
+            return new Point(this.Row - 1, Right(this.Col));
+        }
+
+        public Point Below()
+        {
+            return new Point(this.Row + 1, this.Col);
+        }
+
+        private string Left(string col)
+        {
+            int newColAscii = this.Col[0] - 1;
+            char newColChar = (char)newColAscii;
+            return newColChar.ToString();
+        }
+
+        private string Right(string col)
+        {
+            int newColAscii = this.Col[0] - 1;
+            char newColChar = (char)newColAscii;
+            return newColChar.ToString();
+        }
+
+        private int RowUp(int row)
+        {
+            return row - 1;
+        }
+
+        private int RowDown(int row)
+        {
+            return row + 1;
+        }
+    }
+}

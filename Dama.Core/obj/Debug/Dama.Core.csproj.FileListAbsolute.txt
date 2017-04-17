@@ -1,0 +1,4 @@
+C:\Users\gferraro\documents\visual studio 2015\Projects\Dama.Core\Dama.Core\bin\Debug\Dama.Core.dll
+C:\Users\gferraro\documents\visual studio 2015\Projects\Dama.Core\Dama.Core\bin\Debug\Dama.Core.pdb
+C:\Users\gferraro\documents\visual studio 2015\Projects\Dama.Core\Dama.Core\obj\Debug\Dama.Core.dll
+C:\Users\gferraro\documents\visual studio 2015\Projects\Dama.Core\Dama.Core\obj\Debug\Dama.Core.pdb
